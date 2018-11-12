@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite1]">
+  <listeners>
+    <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+  </listeners>
+  <test thread-count="5" name="Regression Test Suite(failed)">
+    <classes>
+      <class name="test.testCases.SearchTest">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="testVerifyOPriceOrder"/>
+          <include name="aftertest"/>
+        </methods>
+      </class> <!-- test.testCases.SearchTest -->
+    </classes>
+  </test> <!-- Regression Test Suite(failed) -->
+</suite> <!-- Failed suite [Suite1] -->
