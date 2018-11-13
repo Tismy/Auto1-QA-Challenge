@@ -51,7 +51,7 @@ In this project, I have used Modular driven framework by using Page Object Model
 **Config Package** : This package contains all the common functions used by all the pages. This class is responsible for loading the configurations from properties files, Initializing the WebDriver, Implicit Waits, Extent Reports. <br />
 
 **Properties file**: Properties file stores the information that remains static throughout the framework such as browser specific information, application URL, screenshots path etc. All the details which change as per the environment and authorization such as URL, Login Credentials are kept in the config.properties file. Keeping these details in a separate file makes easy to maintain.<br />
- 
+
 **Screenshots**:  Screenshots will be captured and stored in a separate folder and also the screenshots of a failed test cases will be added in the extent reports.<br />
 
 **TestNG**: Using TestNG for Assertions, Grouping and Parallel execution.<br />
@@ -80,7 +80,7 @@ Go to your project directory from terminal and hit following commands<br />
 ## Running the tests - from IDE
  run BDDRunner JUnit file <br />
  
-*NOTE*:
+## *NOTE*:
 Below are not implemented in this framework:<br />
 Test Data:  All the test data can be kept in an excel sheet and this can be passed to the scripts and handle data driven testing.  Apache POI can be used to handle excel sheets.<br />
 Version Control Tool: TFS/Bit Bucket as a repository to store the test scripts. <br />
