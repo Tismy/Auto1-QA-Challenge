@@ -71,11 +71,11 @@ In this project, I have used Modular driven framework by using Page Object Model
 
 **Logging**: It is done using log4j.<br />
 
-**ReportNG** : Interactive and readable reports for selenium web-driver tests are generated using ReportNG
+**ReportNG** : Interactive and readable reports for selenium web-driver tests are generated using ReportNG<br />
  
- ##  Running the tests - command line mode
+##  Running the tests - command line mode
 Go to your project directory from terminal and hit following commands<br />
- mvn test 
+mvn test 
 
 ## Running the tests - from IDE
  run BDDRunner JUnit file <br />
