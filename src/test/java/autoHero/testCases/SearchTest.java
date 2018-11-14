@@ -23,6 +23,7 @@ import autoHero.configs.BaseTest;
 import autoHero.configs.Constants;
 import autoHero.configs.ExtentManager;
 import autoHero.pageObjects.SearchPage;
+import autoHero.stepDefinitions.Base_Test;
 import autoHero.utils.Log;
 import autoHero.utils.UtilsFun;
 
@@ -35,60 +36,41 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 
-public class SearchTest  extends BaseTest{
+public class SearchTest extends Base_Test {
 
-	public  WebDriver driver;
+	public WebDriver driver;
 
 	SearchPage SearchPage;
 
+	
+	
 	public static ExtentReports extent;
 
 	@BeforeSuite
 	public void beforesuite() {
-		DOMConfigurator.configure("./src/test/java/autoHero/resources/log4j.xml");
+		DOMConfigurator.configure(Constants.log4Jxml);
 		System.setProperty("org.uncommons.reportng.escape-output", "false");
 		extent = ExtentManager.getInstance();
 
 	}
 
 	@BeforeTest
-	public void beforeTest() {
-		driver = UtilsFun.openBrowser();
+	public void testApplyFilters() throws InterruptedException {
+		driver = UtilsFun.getChromeDriver();
 		driver.get(Constants.autoHerourl);
 //		SearchPage = PageFactory.initElements(driver, SearchPage.class);
 		Log.info("beforeTest method");
 		Reporter.log("beforeTest method");
 		ExtentManager.testsuite = extent.createTest("Test satrted");
-		
-		
-		System.out.println("driver 1: "+ driver);
+
+		SearchPage = PageFactory.initElements(driver, SearchPage.class);
+		// function to apply filters
+		SearchPage.SearchApplyFilter_Action(2015, "Höchster Preis");
+
+		System.out.println("driver 1: " + driver);
 	}
 
-	@Test
-	public void testApplyFilter() throws InterruptedException {
-
-		try {
-			BaseTest.testResult = true;
-
-			ExtentTest child = null;
-			child = ExtentManager.testsuite.createNode("testApplyFilter");
-			ExtentManager.test = child;
-
-			SearchPage = PageFactory.initElements(driver, SearchPage.class);
-			// function to apply filters
-			SearchPage.SearchApplyFilter_Action(2015, "Höchster Preis");
-
-			if (BaseTest.testResult == false) {
-				Assert.fail("testcase failed");
-			}
-		} catch (Exception e) {
-			UtilsFun.FailResult("Test case failed");
-			UtilsFun.FailResult(UtilsFun.stackTrace(e));
-		}
-		System.out.println("driver 2: "+ driver);
-	}
-
-	@Test(dependsOnMethods = { "testApplyFilter" }, enabled = true)
+	@Test(enabled = true)
 	public void testVerifyRegistrationYear() throws InterruptedException {
 
 		try {
@@ -98,9 +80,8 @@ public class SearchTest  extends BaseTest{
 			child = ExtentManager.testsuite.createNode("testVerifyRegistrationYear");
 			ExtentManager.test = child;
 
-			
 			SearchPage = PageFactory.initElements(driver, SearchPage.class);
-			SearchPage.VerifyRegistrationYear( 2015);
+			SearchPage.VerifyRegistrationYear(2015);
 
 			if (BaseTest.testResult == false) {
 				Assert.fail("testcase failed");
@@ -109,10 +90,10 @@ public class SearchTest  extends BaseTest{
 			UtilsFun.FailResult("Test case failed");
 			UtilsFun.FailResult(UtilsFun.stackTrace(e));
 		}
-		System.out.println("driver 3: "+ driver);
+		System.out.println("driver 3: " + driver);
 	}
 
-	@Test(dependsOnMethods = { "testVerifyRegistrationYear" }, enabled = true)
+	@Test(enabled = true)
 	public void testVerifyOPriceOrder() throws InterruptedException {
 
 		try {
@@ -122,7 +103,7 @@ public class SearchTest  extends BaseTest{
 			child = ExtentManager.testsuite.createNode("testVerifyOPriceOrder");
 			ExtentManager.test = child;
 
-		
+			SearchPage = PageFactory.initElements(driver, SearchPage.class);
 			SearchPage.VerifyOPriceOrder();
 
 			if (BaseTest.testResult == false) {
@@ -137,13 +118,13 @@ public class SearchTest  extends BaseTest{
 
 	@AfterTest
 	public void aftertest() throws InterruptedException {
-		System.out.println("driver 5: "+ driver);
-		
-		//Thread.sleep(500);
+		System.out.println("driver 5: " + driver);
+
+		// Thread.sleep(500);
 		driver.close();
 		if (driver != null) {
 			driver.quit();
-			
+
 		}
 
 		extent.flush();
