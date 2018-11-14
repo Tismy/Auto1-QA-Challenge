@@ -17,7 +17,7 @@ public class ExtentManager {
  
     public synchronized static ExtentReports getInstance(){
        
-    	File extentfile = new File("./src/test/java/autoHero/reports/ExtentReportResults.html");
+    	File extentfile = new File(Constants.extentReport);
     	if(extent == null){
             //Set HTML reporting file location
             //String workingDir = System.getProperty("user.dir");
